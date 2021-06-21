@@ -20,8 +20,9 @@ export declare class MyElement extends LitElement {
     connectedCallback(): void;
     disconnectedCallback(): void;
     private handleKey;
+    private convertStringToHex;
+    private isWindowsOS;
     render(): import("lit-html").TemplateResult<1>;
-    private _onClick;
     foo(): string;
 }
 declare global {

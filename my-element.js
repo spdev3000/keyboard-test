@@ -6,6 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import Bowser from 'bowser';
 /**
  * An example element.
  *
@@ -40,14 +41,21 @@ let MyElement = class MyElement extends LitElement {
         console.log(evt);
         this.evt = evt;
     }
+    convertStringToHex(str) {
+        var arr = [];
+        for (var i = 0; i < str.length; i++) {
+            arr[i] = ("00" + str.charCodeAt(i).toString(16)).slice(-4);
+        }
+        return "\\u" + arr.join("\\u");
+    }
+    isWindowsOS() {
+        const browser = Bowser.getParser(window.navigator.userAgent);
+        return browser.getOSName(true) === 'windows';
+    }
     render() {
-        var _a, _b, _c, _d, _e, _f, _g;
+        var _a, _b, _c, _d, _e, _f, _g, _h;
         return html `
-      <h1>Hello, ${this.name}!</h1>
-      <button @click=${this._onClick} part="button">
-        Click Count: ${this.count}
-      </button>
-      <h2>Key Events:</h2>
+      <h1>Key Events:</h1>
       <ul>
         <li>Key: ${(_a = this.evt) === null || _a === void 0 ? void 0 : _a.key}</li>
         <li>Code: ${(_b = this.evt) === null || _b === void 0 ? void 0 : _b.code}</li>
@@ -56,12 +64,10 @@ let MyElement = class MyElement extends LitElement {
         <li>Alt: ${(_e = this.evt) === null || _e === void 0 ? void 0 : _e.altKey}</li>
         <li>Ctrl: ${(_f = this.evt) === null || _f === void 0 ? void 0 : _f.ctrlKey}</li>
         <li>location: ${(_g = this.evt) === null || _g === void 0 ? void 0 : _g.location}</li>
+        <li>HEX: ${this.convertStringToHex(((_h = this.evt) === null || _h === void 0 ? void 0 : _h.key) || '')}
       </ul>
-      <slot></slot>
+      <p><i>Operating System: ${this.isWindowsOS() ? 'Windows' : 'MacOS'}</i></p>
     `;
-    }
-    _onClick() {
-        this.count++;
     }
     foo() {
         return 'foo';

@@ -1,6 +1,7 @@
 
 import {LitElement, html, css} from 'lit';
 import {customElement, property} from 'lit/decorators.js';
+import Bowser from 'bowser';
 
 /**
  * An example element.
@@ -58,13 +59,22 @@ export class MyElement extends LitElement {
     this.evt = evt
   }
 
+  private convertStringToHex(str: string): string {
+    var arr = [];
+    for (var i = 0; i < str.length; i++) {
+           arr[i] = ("00" + str.charCodeAt(i).toString(16)).slice(-4);
+    }
+    return "\\u" + arr.join("\\u");
+  }
+
+  private isWindowsOS(): boolean {
+    const browser = Bowser.getParser(window.navigator.userAgent)
+    return browser.getOSName(true) === 'windows'
+  }
+
   render() {
     return html`
-      <h1>Hello, ${this.name}!</h1>
-      <button @click=${this._onClick} part="button">
-        Click Count: ${this.count}
-      </button>
-      <h2>Key Events:</h2>
+      <h1>Key Events:</h1>
       <ul>
         <li>Key: ${this.evt?.key}</li>
         <li>Code: ${this.evt?.code}</li>
@@ -73,13 +83,10 @@ export class MyElement extends LitElement {
         <li>Alt: ${this.evt?.altKey}</li>
         <li>Ctrl: ${this.evt?.ctrlKey}</li>
         <li>location: ${this.evt?.location}</li>
+        <li>HEX: ${this.convertStringToHex(this.evt?.key || '')}
       </ul>
-      <slot></slot>
+      <p><i>Operating System: ${this.isWindowsOS() ? 'Windows' : 'MacOS'}</i></p>
     `;
-  }
-
-  private _onClick() {
-    this.count++;
   }
 
   foo(): string {
