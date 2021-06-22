@@ -77,13 +77,14 @@ export class MyElement extends LitElement {
       <h1>Key Events:</h1>
       <ul>
         <li>Key: ${this.evt?.key}</li>
+        <li>Key - toLowerCase: ${this.evt?.key.toLowerCase()}</li>
         <li>Code: ${this.evt?.code}</li>
         <li>Shift: ${this.evt?.shiftKey}</li>
         <li>Meta: ${this.evt?.metaKey}</li>
         <li>Alt: ${this.evt?.altKey}</li>
         <li>Ctrl: ${this.evt?.ctrlKey}</li>
         <li>location: ${this.evt?.location}</li>
-        <li>HEX: ${this.convertStringToHex(this.evt?.key || '')}
+        <li>HEX: ${this.convertStringToHex(this.evt?.key || '')}</li>
       </ul>
       <p><i>Operating System: ${this.isWindowsOS() ? 'Windows' : 'MacOS'}</i></p>
     `;
