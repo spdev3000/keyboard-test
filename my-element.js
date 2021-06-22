@@ -53,18 +53,19 @@ let MyElement = class MyElement extends LitElement {
         return browser.getOSName(true) === 'windows';
     }
     render() {
-        var _a, _b, _c, _d, _e, _f, _g, _h;
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j;
         return html `
       <h1>Key Events:</h1>
       <ul>
         <li>Key: ${(_a = this.evt) === null || _a === void 0 ? void 0 : _a.key}</li>
-        <li>Code: ${(_b = this.evt) === null || _b === void 0 ? void 0 : _b.code}</li>
-        <li>Shift: ${(_c = this.evt) === null || _c === void 0 ? void 0 : _c.shiftKey}</li>
-        <li>Meta: ${(_d = this.evt) === null || _d === void 0 ? void 0 : _d.metaKey}</li>
-        <li>Alt: ${(_e = this.evt) === null || _e === void 0 ? void 0 : _e.altKey}</li>
-        <li>Ctrl: ${(_f = this.evt) === null || _f === void 0 ? void 0 : _f.ctrlKey}</li>
-        <li>location: ${(_g = this.evt) === null || _g === void 0 ? void 0 : _g.location}</li>
-        <li>HEX: ${this.convertStringToHex(((_h = this.evt) === null || _h === void 0 ? void 0 : _h.key) || '')}
+        <li>Key - toLowerCase: ${(_b = this.evt) === null || _b === void 0 ? void 0 : _b.key.toLowerCase()}</li>
+        <li>Code: ${(_c = this.evt) === null || _c === void 0 ? void 0 : _c.code}</li>
+        <li>Shift: ${(_d = this.evt) === null || _d === void 0 ? void 0 : _d.shiftKey}</li>
+        <li>Meta: ${(_e = this.evt) === null || _e === void 0 ? void 0 : _e.metaKey}</li>
+        <li>Alt: ${(_f = this.evt) === null || _f === void 0 ? void 0 : _f.altKey}</li>
+        <li>Ctrl: ${(_g = this.evt) === null || _g === void 0 ? void 0 : _g.ctrlKey}</li>
+        <li>location: ${(_h = this.evt) === null || _h === void 0 ? void 0 : _h.location}</li>
+        <li>HEX: ${this.convertStringToHex(((_j = this.evt) === null || _j === void 0 ? void 0 : _j.key) || '')}</li>
       </ul>
       <p><i>Operating System: ${this.isWindowsOS() ? 'Windows' : 'MacOS'}</i></p>
     `;
